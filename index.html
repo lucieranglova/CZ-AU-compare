@@ -21,663 +21,131 @@
   --border: #E8E0D0;
   --shadow: 0 2px 20px rgba(0,0,0,0.07);
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: 'Nunito Sans', sans-serif; min-height: 100vh; }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Nunito Sans', sans-serif;
-  min-height: 100vh;
-}
-
-/* Decorative top stripe */
 .top-stripe {
   height: 6px;
   background: linear-gradient(90deg, var(--cz-blue) 0%, var(--cz-blue) 33%, #fff 33%, #fff 40%, var(--cz-red) 40%, var(--cz-red) 50%, var(--au-blue) 50%, var(--au-blue) 66%, var(--au-red) 66%, var(--au-red) 80%, var(--au-gold) 80%);
 }
 
-header {
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  padding: 2.5rem 2rem 2rem;
-  text-align: center;
-}
+header { background: var(--card); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem 2rem; text-align: center; }
 
-.flag-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
+.flag-row { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
 .flag { font-size: 2.2rem; }
-.vs-badge {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--muted);
-}
+.vs-badge { background: var(--bg2); border: 1px solid var(--border); border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.75rem; font-weight: 700; color: var(--muted); }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  font-weight: 900;
-  line-height: 1.1;
-  color: var(--text);
-}
+h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; line-height: 1.1; }
+h1 em { font-style: normal; color: var(--au-gold); }
+.tagline { margin-top: 0.6rem; color: var(--muted); font-size: 0.9rem; font-weight: 300; }
 
-h1 em {
-  font-style: normal;
-  color: var(--au-gold);
-}
+.selector-wrap { max-width: 680px; margin: 2rem auto 0; padding: 0 1.5rem; }
+.select-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.5rem; }
+.city-selector { display: flex; gap: 0.75rem; align-items: center; }
 
-.tagline {
-  margin-top: 0.6rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 300;
-}
-
-/* Selector */
-.selector-wrap {
-  max-width: 680px;
-  margin: 2rem auto 0;
-  padding: 0 1.5rem;
-}
-
-.select-label {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.city-selector {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-}
-
-select {
-  flex: 1;
-  background: var(--card);
-  border: 2px solid var(--border);
-  border-radius: 8px;
-  color: var(--text);
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.2s;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  padding-right: 2.5rem;
-}
-
+select { flex: 1; background: var(--card); border: 2px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'Nunito Sans', sans-serif; font-size: 1rem; font-weight: 600; padding: 0.75rem 2.5rem 0.75rem 1rem; outline: none; cursor: pointer; transition: border-color 0.2s; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
 select:focus { border-color: var(--au-gold); }
 
-.btn-compare {
-  background: var(--au-gold);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-family: 'Nunito', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.15s;
-  white-space: nowrap;
-}
+.btn-compare { background: var(--au-gold); color: #fff; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.btn-compare:hover { background: #d4891a; transform: translateY(-1px); }
 
-.btn-compare:hover:not(:disabled) {
-  background: #d4891a;
-  transform: translateY(-1px);
-}
+main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
 
-.btn-compare:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 5rem;
-}
-
-/* Loading */
-.loading {
-  display: none;
-  text-align: center;
-  padding: 4rem 2rem;
-}
+.loading { display: none; text-align: center; padding: 4rem 2rem; }
 .loading.active { display: block; }
-
-.spinner {
-  width: 48px;
-  height: 48px;
-  border: 4px solid var(--border);
-  border-top-color: var(--au-gold);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto 1rem;
-}
-
+.spinner { width: 48px; height: 48px; border: 4px solid var(--border); border-top-color: var(--au-gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
 @keyframes spin { to { transform: rotate(360deg); } }
+.loading p { color: var(--muted); font-size: 0.85rem; }
 
-.loading p {
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-
-/* Error */
-.error-box {
-  display: none;
-  background: #fff5f5;
-  border: 1px solid #ffcccc;
-  border-radius: 8px;
-  padding: 1rem 1.5rem;
-  color: var(--au-red);
-  font-size: 0.9rem;
-  margin-top: 1.5rem;
-}
-.error-box.active { display: block; }
-
-/* Results */
 #results { display: none; }
 #results.active { display: block; animation: fadeIn 0.5s ease; }
-
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* City hero banner */
-.city-hero {
-  background: linear-gradient(135deg, var(--au-blue) 0%, #1a5276 100%);
-  border-radius: 12px;
-  padding: 2rem;
-  color: #fff;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  position: relative;
-  overflow: hidden;
-}
+.city-hero { background: linear-gradient(135deg, var(--au-blue) 0%, #1a5276 100%); border-radius: 12px; padding: 2rem; color: #fff; margin-bottom: 1.5rem; position: relative; overflow: hidden; }
+.city-hero::before { content: '🇦🇺'; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 5rem; opacity: 0.12; }
+.city-hero-name { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; line-height: 1; }
+.city-hero-state { font-size: 0.8rem; font-weight: 300; opacity: 0.7; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+.city-hero-tagline { font-size: 0.95rem; opacity: 0.85; margin-top: 0.5rem; line-height: 1.5; max-width: 500px; }
 
-.city-hero::before {
-  content: '🇦🇺';
-  position: absolute;
-  right: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 5rem;
-  opacity: 0.12;
-}
+.section-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
 
-.city-hero-name {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
-  font-weight: 900;
-  line-height: 1;
-}
-
-.city-hero-state {
-  font-size: 0.8rem;
-  font-weight: 300;
-  opacity: 0.7;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-top: 0.3rem;
-}
-
-.city-hero-tagline {
-  font-size: 0.95rem;
-  opacity: 0.85;
-  margin-top: 0.5rem;
-  line-height: 1.5;
-  max-width: 400px;
-}
-
-/* Live data row */
-.live-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.live-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.25rem;
-  box-shadow: var(--shadow);
-  text-align: center;
-  transition: transform 0.2s;
-}
-
+.live-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.live-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; box-shadow: var(--shadow); text-align: center; transition: transform 0.2s; }
 .live-card:hover { transform: translateY(-2px); }
-
 .live-card .icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+.live-card .value { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--text); line-height: 1.1; }
+.live-card .label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
+.live-card .sublabel { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
 
-.live-card .value {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.1;
-}
-
-.live-card .label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 0.3rem;
-}
-
-.live-card .sublabel {
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin-top: 0.2rem;
-}
-
-/* Section title */
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-/* Comparison table */
-.compare-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-@media (max-width: 540px) {
-  .compare-grid { grid-template-columns: 1fr; }
-}
-
-.compare-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-.compare-card-header {
-  padding: 0.75rem 1rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+@media (max-width: 540px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
+.compare-card-header { padding: 0.75rem 1rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem; }
 .compare-card-header.au { background: #EBF5FB; color: var(--au-blue); }
 .compare-card-header.cz { background: #EAF2FF; color: var(--cz-blue); }
-
 .compare-card-body { padding: 1rem; }
-
-.compare-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--bg2);
-  font-size: 0.88rem;
-}
-
+.compare-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.5rem 0; border-bottom: 1px solid var(--bg2); font-size: 0.88rem; }
 .compare-row:last-child { border-bottom: none; }
+.compare-row .key { color: var(--muted); }
+.compare-row .val { font-weight: 700; }
 
-.compare-row .key { color: var(--muted); font-weight: 400; }
-.compare-row .val { font-weight: 700; color: var(--text); }
-
-/* Difference highlight rows */
-.diff-table {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
-}
-
-.diff-table-header {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  padding: 0.6rem 1rem;
-  background: var(--bg2);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  gap: 0.5rem;
-}
-
-.diff-row {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--bg2);
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.88rem;
-  transition: background 0.15s;
-}
-
+.diff-table { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 1.5rem; }
+.diff-table-header { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; padding: 0.6rem 1rem; background: var(--bg2); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); gap: 0.5rem; }
+.diff-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; padding: 0.75rem 1rem; border-bottom: 1px solid var(--bg2); align-items: center; gap: 0.5rem; font-size: 0.88rem; transition: background 0.15s; }
 .diff-row:last-child { border-bottom: none; }
 .diff-row:hover { background: var(--bg); }
-
 .diff-row .topic { font-weight: 600; }
 .diff-row .city-val { color: var(--muted); font-size: 0.82rem; }
-
-.diff-pill {
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.2rem 0.5rem;
-  border-radius: 20px;
-  text-align: center;
-}
-
+.diff-pill { font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 20px; text-align: center; }
 .diff-pill.better { background: #E9F7EF; color: var(--au-green); }
 .diff-pill.worse { background: #FDECEA; color: var(--au-red); }
 .diff-pill.neutral { background: var(--bg2); color: var(--muted); }
 
-/* Tips section */
-.tips-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.tip-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.25rem;
-  box-shadow: var(--shadow);
-}
-
-.tip-card .tip-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-.tip-card .tip-title {
-  font-weight: 700;
-  font-size: 0.85rem;
-  margin-bottom: 0.4rem;
-  color: var(--text);
-}
-.tip-card .tip-text {
-  font-size: 0.82rem;
-  color: #666;
-  line-height: 1.55;
-}
-
-/* Wildlife alert */
-.wildlife-alert {
-  background: linear-gradient(135deg, #FFF8E7, #FEF3CD);
-  border: 1px solid #F5C842;
-  border-radius: 10px;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.5rem;
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
+.wildlife-alert { background: linear-gradient(135deg, #FFF8E7, #FEF3CD); border: 1px solid #F5C842; border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
 .wildlife-alert .alert-icon { font-size: 1.8rem; flex-shrink: 0; }
 .wildlife-alert .alert-title { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.4rem; color: #7D6008; }
 .wildlife-alert .alert-text { font-size: 0.83rem; color: #7D6008; line-height: 1.55; }
 
-/* Migration score */
-.migration-bar {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
-}
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.tip-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; box-shadow: var(--shadow); }
+.tip-card .tip-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.tip-card .tip-title { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.4rem; }
+.tip-card .tip-text { font-size: 0.82rem; color: #666; line-height: 1.55; }
 
-.migration-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.75rem;
-}
-
+.migration-bar { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; box-shadow: var(--shadow); margin-bottom: 1.5rem; }
+.migration-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.75rem; }
 .migration-label span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .migration-label strong { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--au-green); }
+.bar-track { height: 10px; background: var(--bg2); border-radius: 99px; overflow: hidden; margin-bottom: 0.75rem; }
+.bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--au-gold), var(--au-green)); transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); width: 0%; }
+.migration-note { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
 
-.bar-track {
-  height: 10px;
-  background: var(--bg2);
-  border-radius: 99px;
-  overflow: hidden;
-  margin-bottom: 0.75rem;
-}
-
-.bar-fill {
-  height: 100%;
-  border-radius: 99px;
-  background: linear-gradient(90deg, var(--au-gold), var(--au-green));
-  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 0%;
-}
-
-.migration-note {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.55;
-}
-
-/* Calculator section */
-.calc-section {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
-}
-
-.calc-row {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 1rem;
-  align-items: end;
-  margin-bottom: 1.25rem;
-}
-
-@media (max-width: 520px) {
-  .calc-row { grid-template-columns: 1fr; }
-  .calc-arrow { transform: rotate(90deg); text-align: center; }
-}
-
-.calc-field label {
-  display: block;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.4rem;
-}
-
-.calc-input-wrap {
-  display: flex;
-  border: 2px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: border-color 0.2s;
-}
-
+/* Calculator */
+.calc-section { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; box-shadow: var(--shadow); margin-bottom: 1.5rem; }
+.calc-sub-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+.calc-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: end; margin-bottom: 1.25rem; }
+@media (max-width: 520px) { .calc-row, .currency-row { grid-template-columns: 1fr; } }
+.calc-field label { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.calc-input-wrap { display: flex; border: 2px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.2s; }
 .calc-input-wrap:focus-within { border-color: var(--au-gold); }
-
-.calc-input-wrap input[type="time"] {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 0.65rem 0.75rem;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--text);
-  background: transparent;
-  min-width: 0;
-}
-
-.calc-input-wrap select {
-  border: none;
-  border-left: 1px solid var(--border);
-  border-radius: 0;
-  padding: 0.65rem 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  background: var(--bg2);
-  color: var(--text);
-  min-width: 110px;
-  flex-shrink: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.5rem center;
-  padding-right: 1.5rem;
-}
-
-.calc-arrow {
-  font-size: 1.4rem;
-  color: var(--au-gold);
-  padding-bottom: 0.5rem;
-  text-align: center;
-}
-
-.calc-result {
-  background: var(--bg2);
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  min-height: 52px;
-}
-
-.calc-result .result-time {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.calc-result .result-label {
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-
+.calc-input-wrap input[type="time"] { flex: 1; border: none; outline: none; padding: 0.65rem 0.75rem; font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--text); background: transparent; min-width: 0; }
+.calc-input-wrap select { border: none; border-left: 1px solid var(--border); border-radius: 0; padding: 0.65rem 1.5rem 0.65rem 0.5rem; font-size: 0.8rem; font-weight: 600; background: var(--bg2); color: var(--text); min-width: 110px; flex-shrink: 0; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.4rem center; }
+.calc-arrow { font-size: 1.4rem; color: var(--au-gold); padding-bottom: 0.5rem; text-align: center; }
+.calc-result { background: var(--bg2); border-radius: 8px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.75rem; min-height: 52px; }
+.calc-result .result-time { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; }
+.calc-result .result-label { font-size: 0.75rem; color: var(--muted); }
 .calc-result .result-emoji { font-size: 1.4rem; }
-
-.calc-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 1.25rem 0;
-}
-
-/* Currency section inside calc */
-.currency-row {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 1rem;
-  align-items: end;
-}
-
-@media (max-width: 520px) {
-  .currency-row { grid-template-columns: 1fr; }
-}
-
-.currency-input-wrap {
-  display: flex;
-  border: 2px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: border-color 0.2s;
-}
-
+.calc-divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
+.currency-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: end; }
+.currency-input-wrap { display: flex; border: 2px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.2s; }
 .currency-input-wrap:focus-within { border-color: var(--au-gold); }
-
-.currency-badge {
-  background: var(--bg2);
-  border-right: 1px solid var(--border);
-  padding: 0.65rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-}
-
-.currency-badge.right {
-  border-right: none;
-  border-left: 1px solid var(--border);
-}
-
-.currency-input-wrap input[type="number"] {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 0.65rem 0.75rem;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--text);
-  background: transparent;
-  width: 100%;
-  min-width: 0;
-}
-
-.rate-note {
-  font-size: 0.72rem;
-  color: var(--muted);
-  margin-top: 0.6rem;
-  text-align: center;
-}
-
+.currency-badge { background: var(--bg2); border-right: 1px solid var(--border); padding: 0.65rem 0.75rem; font-size: 0.75rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
+.currency-badge.right { border-right: none; border-left: 1px solid var(--border); }
+.currency-input-wrap input[type="number"] { flex: 1; border: none; outline: none; padding: 0.65rem 0.75rem; font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--text); background: transparent; width: 100%; min-width: 0; }
+.rate-note { font-size: 0.72rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
 .rate-note span { color: var(--au-gold); font-weight: 700; }
 
-footer {
-  text-align: center;
-  padding: 2rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.72rem;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-}
-
+footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; }
 footer a { color: var(--au-gold); text-decoration: none; }
 </style>
 </head>
@@ -710,32 +178,26 @@ footer a { color: var(--au-gold); text-decoration: none; }
         <option value="Gold Coast">Gold Coast, Queensland</option>
         <option value="Cairns">Cairns, Queensland</option>
       </select>
-      <button class="btn-compare" id="compareBtn" onclick="compare()">Compare →</button>
+      <button class="btn-compare" onclick="compare()">Compare →</button>
     </div>
   </div>
 </header>
 
 <main>
-  <div class="error-box" id="errorBox"></div>
-
   <div class="loading" id="loading">
     <div class="spinner"></div>
-    <p>Fetching live data & generating comparison...</p>
+    <p>Fetching live weather data…</p>
   </div>
 
   <div id="results">
-    <!-- City hero -->
     <div class="city-hero" id="cityHero"></div>
 
-    <!-- Live data -->
     <div class="section-title">⚡ Live right now</div>
     <div class="live-row" id="liveRow"></div>
 
-    <!-- Cost of living comparison -->
-    <div class="section-title">💰 Cost of living comparison</div>
+    <div class="section-title">💰 Cost of living</div>
     <div class="compare-grid" id="compareGrid"></div>
 
-    <!-- Key differences table -->
     <div class="section-title">📊 Key differences at a glance</div>
     <div class="diff-table">
       <div class="diff-table-header">
@@ -747,14 +209,11 @@ footer a { color: var(--au-gold); text-decoration: none; }
       <div id="diffRows"></div>
     </div>
 
-    <!-- Wildlife -->
     <div class="wildlife-alert" id="wildlifeAlert"></div>
 
-    <!-- Tips -->
     <div class="section-title">🎒 Moving tips</div>
     <div class="tips-grid" id="tipsGrid"></div>
 
-    <!-- Migration score -->
     <div class="section-title">✈️ Migration friendliness</div>
     <div class="migration-bar">
       <div class="migration-label">
@@ -765,11 +224,9 @@ footer a { color: var(--au-gold); text-decoration: none; }
       <p class="migration-note" id="migrationNote"></p>
     </div>
 
-    <!-- Calculator -->
     <div class="section-title">🕐 Time & Currency calculator</div>
     <div class="calc-section">
-
-      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem;">Time converter</div>
+      <div class="calc-sub-label">Time converter</div>
       <div class="calc-row">
         <div class="calc-field">
           <label>Enter time in…</label>
@@ -784,11 +241,11 @@ footer a { color: var(--au-gold); text-decoration: none; }
         <div class="calc-arrow">→</div>
         <div class="calc-field">
           <label>That's in…</label>
-          <div class="calc-result" id="timeResult">
+          <div class="calc-result">
             <span class="result-emoji">🕐</span>
             <div>
               <div class="result-time" id="resultTime">—</div>
-              <div class="result-label" id="resultLabel">Select a city above first</div>
+              <div class="result-label" id="resultLabel">Select a city first</div>
             </div>
           </div>
         </div>
@@ -796,55 +253,266 @@ footer a { color: var(--au-gold); text-decoration: none; }
 
       <div class="calc-divider"></div>
 
-      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem;">Currency converter</div>
+      <div class="calc-sub-label">Currency converter · AUD ⇄ CZK</div>
       <div class="currency-row">
         <div class="calc-field">
-          <label id="currLabelLeft">AUD</label>
+          <label>AUD</label>
           <div class="currency-input-wrap">
-            <span class="currency-badge" id="currBadgeLeft">AUD</span>
+            <span class="currency-badge">AUD</span>
             <input type="number" id="currencyLeft" value="1000" min="0" oninput="convertCurrencyLeft()">
           </div>
         </div>
         <div class="calc-arrow" style="padding-bottom:0.5rem">⇄</div>
         <div class="calc-field">
-          <label id="currLabelRight">CZK</label>
+          <label>CZK</label>
           <div class="currency-input-wrap">
             <input type="number" id="currencyRight" value="" min="0" oninput="convertCurrencyRight()">
-            <span class="currency-badge right" id="currBadgeRight">CZK</span>
+            <span class="currency-badge right">CZK</span>
           </div>
         </div>
       </div>
       <div class="rate-note" id="rateNote">Loading exchange rate…</div>
     </div>
-
   </div>
 </main>
 
 <footer>
-  Built with ☀️ and a dream of Brisbane · <a href="https://lucieranglova.github.io/Portfolio-AUS/">Portfolio-AUS</a> · Weather by Open-Meteo
+  Built with ☀️ and a dream of Brisbane · <a href="https://lucieranglova.github.io/Portfolio-AUS/">Portfolio-AUS</a>
+  · Weather: Open-Meteo · Currency: Frankfurter/ECB · Data: Numbeo
 </footer>
 
 <script>
+// ── Static city data (sourced from Numbeo, Seek, DIBP) ───────────────────────
 const CITIES = {
-  "Brisbane":   { lat: -27.4698, lon: 153.0251, tz: "Australia/Brisbane",  state: "Queensland" },
-  "Sydney":     { lat: -33.8688, lon: 151.2093, tz: "Australia/Sydney",    state: "New South Wales" },
-  "Melbourne":  { lat: -37.8136, lon: 144.9631, tz: "Australia/Melbourne", state: "Victoria" },
-  "Perth":      { lat: -31.9505, lon: 115.8605, tz: "Australia/Perth",     state: "Western Australia" },
-  "Adelaide":   { lat: -34.9285, lon: 138.6007, tz: "Australia/Adelaide",  state: "South Australia" },
-  "Darwin":     { lat: -12.4634, lon: 130.8456, tz: "Australia/Darwin",    state: "Northern Territory" },
-  "Hobart":     { lat: -42.8821, lon: 147.3272, tz: "Australia/Hobart",    state: "Tasmania" },
-  "Canberra":   { lat: -35.2809, lon: 149.1300, tz: "Australia/Sydney",    state: "ACT" },
-  "Gold Coast": { lat: -28.0167, lon: 153.4000, tz: "Australia/Brisbane",  state: "Queensland" },
-  "Cairns":     { lat: -16.9186, lon: 145.7781, tz: "Australia/Brisbane",  state: "Queensland" },
+  Brisbane: {
+    lat: -27.4698, lon: 153.0251, tz: "Australia/Brisbane", state: "Queensland",
+    tagline: "Sun-soaked river city with a relaxed pace, booming tech scene, and 2032 Olympics energy.",
+    cost: { rent: "2 200", coffee: "5.50", transport: "180", meal: "25", salary: "6 800", rentCzk: "38 000", coffeeCzk: "75", transportCzk: "670", mealCzk: "300", salaryCzk: "58 000" },
+    wildlife: { emoji: "🕷️", text: "Redback spiders love suburban garages — shake your shoes before putting them on. The odd eastern brown snake shows up in gardens, Australia's most lethal snake with a genuinely terrible temper." },
+    migration: { score: 82, note: "Brisbane is one of the best cities for Czech skilled migrants. Strong IT demand, the 491 Queensland state nomination pathway is open, and the city is actively growing pre-Olympics. Lower competition than Sydney or Melbourne." },
+    differences: [
+      { topic: "Language", prague: "Czech (English ok)", city: "English only", verdict: "better", note: "Zero language barrier" },
+      { topic: "Salary (IT)", prague: "CZK 70–120k/mo", city: "AUD 8–14k/mo", verdict: "better", note: "Roughly 2–3× higher" },
+      { topic: "Cost of living", prague: "Very affordable", city: "Noticeably higher", verdict: "worse", note: "Esp. rent & dining" },
+      { topic: "Healthcare", prague: "Universal, free", city: "Medicare + private", verdict: "neutral", note: "Medicare covers basics" },
+      { topic: "Visa", prague: "EU freedom", city: "Points-based (189/491)", verdict: "worse", note: "Skilled migration" },
+      { topic: "Weather", prague: "Cold winters", city: "Subtropical, sunny", verdict: "better", note: "~280 sunny days/year" },
+      { topic: "IT market", prague: "Many multinationals", city: "Growing, high demand", verdict: "better", note: "QA/test roles abundant" },
+    ],
+    tips: [
+      { icon: "🏠", title: "Finding a flat", text: "Use Domain.com.au and realestate.com.au. Apply fast — good flats in inner Brisbane go within 48 hours. Have payslips and references ready." },
+      { icon: "💼", title: "IT jobs", text: "Seek.com.au is the main job board. LinkedIn AU works too. QA and test automation roles are in high demand, especially with Playwright/Selenium." },
+      { icon: "🚗", title: "Transport", text: "Brisbane has good buses and trains (go card). But owning a car makes life much easier, especially for suburbs. Driving is on the left!" },
+      { icon: "🌞", title: "Lifestyle surprise", text: "Everything closes earlier than in Prague — many restaurants by 10pm. But the outdoor lifestyle more than compensates: river walks, beaches 1hr away, year-round BBQs." },
+    ],
+  },
+  Sydney: {
+    lat: -33.8688, lon: 151.2093, tz: "Australia/Sydney", state: "New South Wales",
+    tagline: "Iconic harbour city — Australia's financial capital with world-class beaches and eye-watering rents.",
+    cost: { rent: "2 900", coffee: "5.50", transport: "210", meal: "30", salary: "7 500", rentCzk: "44 000", coffeeCzk: "75", transportCzk: "700", mealCzk: "350", salaryCzk: "65 000" },
+    wildlife: { emoji: "🕷️", text: "Sydney funnel-web spider is one of the world's most dangerous — it's aggressive and fast-acting. Found in gardens and bushland around the city. Antivenom exists, so hospitals are your friend." },
+    migration: { score: 72, note: "Sydney has excellent opportunities but NSW state nomination (190) is very competitive. High salaries partially offset the brutal cost of living. Best for senior roles." },
+    differences: [
+      { topic: "Language", prague: "Czech (English ok)", city: "English only", verdict: "better", note: "Zero language barrier" },
+      { topic: "Salary (IT)", prague: "CZK 70–120k/mo", city: "AUD 9–16k/mo", verdict: "better", note: "Highest salaries in AU" },
+      { topic: "Cost of living", prague: "Very affordable", city: "Extremely expensive", verdict: "worse", note: "Highest rents in AU" },
+      { topic: "Healthcare", prague: "Universal, free", city: "Medicare + private", verdict: "neutral", note: "Medicare covers basics" },
+      { topic: "Visa", prague: "EU freedom", city: "Points-based (189/190)", verdict: "worse", note: "NSW 190 competitive" },
+      { topic: "Weather", prague: "Cold winters", city: "Mild, sunny, humid", verdict: "better", note: "Rarely below 10°C" },
+      { topic: "IT market", prague: "Many multinationals", city: "Largest AU tech hub", verdict: "better", note: "Most roles, highest pay" },
+    ],
+    tips: [
+      { icon: "🏠", title: "Finding a flat", text: "Budget at least AUD 600–750/wk for a 1BR in inner suburbs. Domain.com.au and flatmates.com.au for room shares. Competition is fierce." },
+      { icon: "💼", title: "IT jobs", text: "Sydney has the highest concentration of tech jobs in AU. Finance, consulting and FAANG-adjacent roles abound. Seek + LinkedIn are essential." },
+      { icon: "🚗", title: "Transport", text: "Opal card for trains, buses and ferries. CBD is walkable. Driving is not recommended in the city centre — parking is expensive and traffic bad." },
+      { icon: "🌞", title: "Lifestyle surprise", text: "Bondi Beach is 20 min from the CBD. Czechs are often shocked by how outdoorsy Sydneysiders are — gym, surf, run culture is very real." },
+    ],
+  },
+  Melbourne: {
+    lat: -37.8136, lon: 144.9631, tz: "Australia/Melbourne", state: "Victoria",
+    tagline: "Australia's cultural capital — coffee obsession, laneway art, four seasons in one day.",
+    cost: { rent: "2 400", coffee: "5.00", transport: "175", meal: "25", salary: "7 000", rentCzk: "40 000", coffeeCzk: "70", transportCzk: "660", mealCzk: "310", salaryCzk: "60 000" },
+    wildlife: { emoji: "🐍", text: "Eastern brown snakes are common in suburban fringes and parks. Melbourne also has its share of redbacks. The weather is genuinely the most dangerous thing — 40°C one day, 15°C the next." },
+    migration: { score: 75, note: "Melbourne is popular and competitive for migration. Victoria state nomination (190/491) is highly sought after. Strong tech and startup ecosystem, great quality of life despite unpredictable weather." },
+    differences: [
+      { topic: "Language", prague: "Czech (English ok)", city: "English only", verdict: "better", note: "Zero language barrier" },
+      { topic: "Salary (IT)", prague: "CZK 70–120k/mo", city: "AUD 8–14k/mo", verdict: "better", note: "Strong IT pay" },
+      { topic: "Cost of living", prague: "Very affordable", city: "High, below Sydney", verdict: "worse", note: "Esp. rent & dining" },
+      { topic: "Healthcare", prague: "Universal, free", city: "Medicare + private", verdict: "neutral", note: "Medicare covers basics" },
+      { topic: "Visa", prague: "EU freedom", city: "Points-based (189/190)", verdict: "worse", note: "VIC 190 competitive" },
+      { topic: "Weather", prague: "Predictable seasons", city: "Notoriously erratic", verdict: "neutral", note: "Warm avg, wild swings" },
+      { topic: "Culture", prague: "Rich history", city: "AU cultural capital", verdict: "better", note: "Closest feel to EU city" },
+    ],
+    tips: [
+      { icon: "🏠", title: "Finding a flat", text: "Inner suburbs (Fitzroy, Collingwood, Richmond) are popular but pricey. Domain.com.au — inspect in person when possible, rentals move fast." },
+      { icon: "💼", title: "IT jobs", text: "Strong fintech and startup scene. Seek.com.au plus LinkedIn. Government IT contracts are common in Melbourne — stable long-term option." },
+      { icon: "🚗", title: "Transport", text: "Best public transport in AU: trams, trains, buses all on Myki card. City is very bikeable. Car optional if you live inner city." },
+      { icon: "🌞", title: "Lifestyle surprise", text: "Melbourne's coffee culture rivals Prague's café culture — you'll feel at home. The food scene is incredibly multicultural and affordable by AU standards." },
+    ],
+  },
+  Perth: {
+    lat: -31.9505, lon: 115.8605, tz: "Australia/Perth", state: "Western Australia",
+    tagline: "World's most isolated major city — stunning beaches, mining boom economy, and endless sunshine.",
+    cost: { rent: "2 300", coffee: "5.00", transport: "160", meal: "24", salary: "7 200", rentCzk: "39 000", coffeeCzk: "70", transportCzk: "620", mealCzk: "295", salaryCzk: "62 000" },
+    wildlife: { emoji: "🦈", text: "Perth has one of Australia's highest rates of shark activity — always check beach flags before swimming. Dugites (brown snake variant) are common in suburbs and very venomous." },
+    migration: { score: 78, note: "Perth is excellent for skilled migrants — WA state nomination (190/491) is more accessible than east coast states. Mining and resources sectors drive high salaries. Less competition, faster processing." },
+    differences: [
+      { topic: "Language", prague: "Czech (English ok)", city: "English only", verdict: "better", note: "Zero language barrier" },
+      { topic: "Salary (IT)", prague: "CZK 70–120k/mo", city: "AUD 8–15k/mo", verdict: "better", note: "Mining sector boosts avg" },
+      { topic: "Cost of living", prague: "Very affordable", city: "High but below Sydney", verdict: "worse", note: "Rent rising sharply" },
+      { topic: "Healthcare", prague: "Universal, free", city: "Medicare + private", verdict: "neutral", note: "Medicare covers basics" },
+      { topic: "Visa", prague: "EU freedom", city: "WA 190/491 accessible", verdict: "neutral", note: "Easier than east coast" },
+      { topic: "Isolation", prague: "Centre of Europe", city: "2500km from Sydney", verdict: "worse", note: "Nearest city is far" },
+      { topic: "Weather", prague: "Cold winters", city: "Hot dry summers", verdict: "better", note: "Mediterranean climate" },
+    ],
+    tips: [
+      { icon: "🏠", title: "Finding a flat", text: "Reiwa.com.au is WA's main property portal. Vacancy rates are very low right now — act fast. Suburbs like Fremantle and Northbridge are popular with newcomers." },
+      { icon: "💼", title: "IT jobs", text: "Mining companies need IT heavily — SAP, data and infrastructure roles. Seek.com.au and LinkedIn. Government IT in Perth is also a stable pathway." },
+      { icon: "🚗", title: "Transport", text: "Perth is very car-dependent outside the city centre. A car is almost essential. SmartRider card for public transport, which is actually quite good for a city this size." },
+      { icon: "🌞", title: "Lifestyle surprise", text: "Perth has world-class beaches 20 min from the CBD. Cottesloe Beach on a Sunday will make you wonder why you ever lived elsewhere. The isolation feels freeing, not lonely." },
+    ],
+  },
+  Adelaide: {
+    lat: -34.9285, lon: 138.6007, tz: "Australia/Adelaide", state: "South Australia",
+    tagline: "Festival city on a grid — affordable, liveable, and quietly becoming a defence-tech powerhouse.",
+    cost: { rent: "1 900", coffee: "4.80", transport: "145", meal: "22", salary: "6 200", rentCzk: "33 000", coffeeCzk: "68", transportCzk: "580", mealCzk: "275", salaryCzk: "53 000" },
+    wildlife: { emoji: "🐍", text: "SA has some of Australia's most venomous snakes including the western brown and taipan in rural areas. In the city, redback spiders are a constant suburban companion — check under outdoor furniture." },
+    migration: { score: 74, note: "Adelaide offers a less competitive pathway — SA state nomination (190/491) is relatively accessible. Growing defence industry means strong demand for tech workers. Lowest cost of living of any Australian capital." },
+    differences: [
+      { topic: "Language", prague: "Czech (English ok)", city: "English only", verdict: "better", note: "Zero language barrier" },
+      { topic: "Salary (IT)", prague: "CZK 70–120k/mo", city: "AUD 7–12k/mo", verdict: "better", note: "Lower than east coast" },
+      { topic: "Cost of living", prague: "Very affordable", city: "Most affordable AU capital", verdict: "neutral", note: "Closest to Prague feel" },
+      { topic: "Healthcare", prague: "Universal, free", city: "Medicare + private", verdict: "neutral", note: "Medicare covers basics" },
+      { topic: "Visa", prague: "EU freedom", city: "SA 190 accessible", verdict: "neutral", note: "Good nomination chances" },
+      { topic: "Weather", prague: "Cold winters", city: "Hot dry summers", verdict: "better", note: "Mediterranean climate" },
+      { topic: "City size", prague: "1.4M people", city: "1.4M people", verdict: "neutral", note: "Surprisingly similar size" },
+    ],
+    tips: [
+      { icon: "🏠", title: "Finding a flat", text: "Most affordable capital for renters. Realestate.com.au works well. Inner suburbs like Norwood and Unley are popular. Much less competition than Sydney or Melbourne." },
+      { icon: "💼", title: "IT jobs", text: "Defence industry (Lockheed, ASC, BAE) is booming and hiring IT heavily. Government IT also strong. Seek.com.au — fewer listings than east coast but less competition." },
+      { icon: "🚗", title: "Transport", text: "A car is very helpful. Buses and trams exist but coverage is limited. Metroline card for public transport. City centre is very walkable and flat." },
+      { icon: "🌞", title: "Lifestyle surprise", text: "Adelaide punches above its weight for food and wine — Barossa Valley is 1hr away. The Fringe Festival in February rivals Edinburgh. Czechs tend to love how laid-back it is." },
+    ],
+  },
+  Darwin: {
+    lat: -12.4634, lon: 130.8456, tz: "Australia/Darwin", state: "Northern Territory",
+    tagline: "Frontier tropical city at the top of Australia — wet season, crocs, and an extraordinary indigenous culture.",
+    cost: { rent: "2 000", coffee: "5.20", transport: "130", meal: "25", salary: "6 800", rentCzk: "34 000", coffeeCzk: "72", transportCzk: "520", mealCzk: "300", salaryCzk: "58 000" },
+    wildlife: { emoji: "🐊", text: "Saltwater crocodiles inhabit every waterway around Darwin — never swim in freshwater anywhere near the city, even if it looks safe. Box jellyfish make the sea dangerous October–May. Darwin is not for the wildlife-faint-hearted." },
+    migration: { score: 60, note: "Darwin has a regional migration pathway (491) with fewer competitors. However, the extreme climate, isolation and limited tech job market make it less attractive long-term. Best as a stepping stone to permanent residency." },
+    differences: [
+      { topic: "Language", prague: "Czech (English ok)", city: "English only", verdict: "better", note: "Zero language barrier" },
+      { topic: "Salary (IT)", prague: "CZK 70–120k/mo", city: "AUD 7–12k/mo", verdict: "better", note: "Government roles mainly" },
+      { topic: "Cost of living", prague: "Very affordable", city: "Moderate, remote premium", verdict: "worse", note: "Food costs more" },
+      { topic: "Climate", prague: "4 seasons", city: "Wet/dry only (extreme)", verdict: "worse", note: "Wet season is brutal" },
+      { topic: "Visa", prague: "EU freedom", city: "NT 491 available", verdict: "neutral", note: "Regional pathway" },
+      { topic: "Isolation", prague: "Europe accessible", city: "Very remote", verdict: "worse", note: "Small city, far from east" },
+      { topic: "Wildlife danger", prague: "None really", city: "Extreme", verdict: "worse", note: "Crocs, boxes, snakes" },
+    ],
+    tips: [
+      { icon: "🏠", title: "Finding a flat", text: "Smaller market — realestate.com.au. Government housing available for NT public servants. Air conditioning is non-negotiable, not a luxury." },
+      { icon: "💼", title: "IT jobs", text: "Mainly government and defence IT. Fewer private sector roles. Good if you want NT government nomination for visa — they actively recruit." },
+      { icon: "🚗", title: "Transport", text: "Car is essential. Public transport is minimal. Darwin is small enough to drive anywhere in 20 minutes. Beware: roads flood during wet season." },
+      { icon: "🌞", title: "Lifestyle surprise", text: "The dry season (May–Sep) is genuinely paradise — 30°C, blue skies, outdoor markets every night. It's the wet season (Oct–Apr) that will test your sanity with 90% humidity." },
+    ],
+  },
+  Hobart: {
+    lat: -42.8821, lon: 147.3272, tz: "Australia/Hobart", state: "Tasmania",
+    tagline: "Cool-climate island escape — MONA museum, pristine wilderness, and Australia's most affordable capital.",
+    cost: { rent: "1 800", coffee: "4.80", transport: "120", meal: "22", salary: "5 800", rentCzk: "31 000", coffeeCzk: "68", transportCzk: "480", mealCzk: "270", salaryCzk: "50 000" },
+    wildlife: { emoji: "🐨", text: "Tasmanian devils are real and occasionally aggressive if cornered — don't try to pat them. The Tasmanian tiger is extinct, whatever locals might tell you. Much less dangerous wildlife than mainland Australia." },
+    migration: { score: 68, note: "Tasmania (190/491) actively courts skilled migrants and acceptance rates are higher than mainland states. However, salaries are the lowest in Australia and the tech job market is small. Best for those who value lifestyle over income." },
+    differences: [
+      { topic: "Language", prague: "Czech (English ok)", city: "English only", verdict: "better", note: "Zero language barrier" },
+      { topic: "Salary (IT)", prague: "CZK 70–120k/mo", city: "AUD 6.5–11k/mo", verdict: "neutral", note: "Lowest AU capital salaries" },
+      { topic: "Cost of living", prague: "Very affordable", city: "Most affordable capital", verdict: "neutral", note: "Closest to Prague costs" },
+      { topic: "Healthcare", prague: "Universal, free", city: "Medicare + private", verdict: "neutral", note: "Medicare covers basics" },
+      { topic: "Climate", prague: "Cold winters", city: "Cool, wet, changeable", verdict: "neutral", note: "Feels a bit like home!" },
+      { topic: "Nature", prague: "Beautiful countryside", city: "Extraordinary wilderness", verdict: "better", note: "World-class national parks" },
+      { topic: "City size", prague: "1.4M", city: "240k — very small", verdict: "worse", note: "Limited social scene" },
+    ],
+    tips: [
+      { icon: "🏠", title: "Finding a flat", text: "Cheapest capital to rent in. Realestate.com.au. Sandy Bay and Battery Point are desirable. Market is small — fewer listings but also fewer competitors." },
+      { icon: "💼", title: "IT jobs", text: "Government, education and tourism IT. Small private sector. Remote work for mainland companies is common and a great strategy for Hobart." },
+      { icon: "🚗", title: "Transport", text: "Car is essential — public transport is very limited. Hobart is small and scenic to drive. Roads can be icy in winter (another thing Czechs will handle fine)." },
+      { icon: "🌞", title: "Lifestyle surprise", text: "MONA (Museum of Old and New Art) is one of the world's most extraordinary museums — a genuine world-class institution in a city of 240k. Czechs who love culture are usually amazed." },
+    ],
+  },
+  Canberra: {
+    lat: -35.2809, lon: 149.1300, tz: "Australia/Sydney", state: "ACT",
+    tagline: "Australia's purpose-built capital — government town with surprising café culture and cold winters.",
+    cost: { rent: "2 300", coffee: "5.20", transport: "155", meal: "26", salary: "7 800", rentCzk: "39 000", coffeeCzk: "72", transportCzk: "600", mealCzk: "315", salaryCzk: "67 000" },
+    wildlife: { emoji: "🦘", text: "Kangaroos literally graze on the lawns of parliament house and roam suburban streets at dawn. They're more startling than dangerous — but a kangaroo at full speed is not something you want to meet on a dark road." },
+    migration: { score: 76, note: "ACT nomination (190) is available and processing is efficient. Government IT roles offer excellent stability and pay. Canberra has Australia's highest median household income. A surprising underdog for skilled migrants." },
+    differences: [
+      { topic: "Language", prague: "Czech (English ok)", city: "English only", verdict: "better", note: "Zero language barrier" },
+      { topic: "Salary (IT)", prague: "CZK 70–120k/mo", city: "AUD 9–16k/mo", verdict: "better", note: "Highest avg income in AU" },
+      { topic: "Cost of living", prague: "Very affordable", city: "High but justified", verdict: "worse", note: "High salaries compensate" },
+      { topic: "Healthcare", prague: "Universal, free", city: "Medicare + private", verdict: "neutral", note: "Medicare covers basics" },
+      { topic: "Visa", prague: "EU freedom", city: "ACT 190 efficient", verdict: "neutral", note: "Good processing times" },
+      { topic: "Weather", prague: "Cold winters", city: "Actually cold winters!", verdict: "neutral", note: "Frost, occasional snow" },
+      { topic: "Government IT", prague: "EU institutions nearby", city: "Federal govt epicentre", verdict: "better", note: "Stable, well-paid roles" },
+    ],
+    tips: [
+      { icon: "🏠", title: "Finding a flat", text: "Realestate.com.au. Braddon and Kingston are the trendiest suburbs. Vacancy rates are low — apply quickly and have references ready." },
+      { icon: "💼", title: "IT jobs", text: "Government IT contracting is the gold standard — high rates, stable work. APS (Australian Public Service) roles also strong. Seek.com.au + LinkedIn." },
+      { icon: "🚗", title: "Transport", text: "Car is very helpful. Canberra has a light rail line (Gungahlin to Civic) and bus network, but suburbs are spread out. City is extremely well-planned and easy to navigate." },
+      { icon: "🌞", title: "Lifestyle surprise", text: "Canberra has world-class museums — all free. National Gallery, War Memorial, National Museum. Czechs expecting a boring government town are usually pleasantly surprised by the food and coffee scene." },
+    ],
+  },
+  "Gold Coast": {
+    lat: -28.0167, lon: 153.4000, tz: "Australia/Brisbane", state: "Queensland",
+    tagline: "Sun, surf and skyscrapers — Australia's holiday playground with a rapidly growing tech and health sector.",
+    cost: { rent: "2 400", coffee: "5.50", transport: "165", meal: "26", salary: "6 400", rentCzk: "40 000", coffeeCzk: "75", transportCzk: "630", mealCzk: "315", salaryCzk: "55 000" },
+    wildlife: { emoji: "🦈", text: "Gold Coast beaches have shark nets and lifeguards, but shark sightings are regular — always swim between the flags. Bluebottle jellyfish wash up frequently and sting like fury, though rarely fatally." },
+    migration: { score: 70, note: "Gold Coast falls under Queensland's migration program (491/190). Growing tech and health sectors are creating more skilled roles. Lifestyle is exceptional but salaries are lower than Brisbane or Sydney. Best for those who prioritise beach life." },
+    differences: [
+      { topic: "Language", prague: "Czech (English ok)", city: "English only", verdict: "better", note: "Zero language barrier" },
+      { topic: "Salary (IT)", prague: "CZK 70–120k/mo", city: "AUD 7–13k/mo", verdict: "better", note: "Below Brisbane average" },
+      { topic: "Cost of living", prague: "Very affordable", city: "High, tourist premium", verdict: "worse", note: "Restaurants pricier" },
+      { topic: "Beaches", prague: "Landlocked", city: "World-class surf beaches", verdict: "better", note: "Surfers Paradise daily" },
+      { topic: "Visa", prague: "EU freedom", city: "QLD 491/190", verdict: "worse", note: "Competitive pathway" },
+      { topic: "Weather", prague: "Cold winters", city: "Subtropical paradise", verdict: "better", note: "Almost no cold days" },
+      { topic: "City maturity", prague: "1000yr old city", city: "Young, still growing", verdict: "neutral", note: "Less culture, more lifestyle" },
+    ],
+    tips: [
+      { icon: "🏠", title: "Finding a flat", text: "Domain.com.au and realestate.com.au. Burleigh Heads and Miami are popular with professionals. Avoid tourist-zone Surfers Paradise for living — great to visit, noisy to live in." },
+      { icon: "💼", title: "IT jobs", text: "Health sector (Gold Coast University Hospital), education and tourism IT. Growing startup scene. Many people commute to Brisbane (1hr by train) for better roles." },
+      { icon: "🚗", title: "Transport", text: "Go card for tram (G:link) and buses. But a car is very useful for getting around the 50km strip. Tram runs from Helensvale to Broadbeach — very convenient." },
+      { icon: "🌞", title: "Lifestyle surprise", text: "You can genuinely surf before work and be at your desk by 9am. The lifestyle is real, not just a postcard. Czechs tend to either love it immediately or find it lacks cultural depth — it's a personal fit question." },
+    ],
+  },
+  Cairns: {
+    lat: -16.9186, lon: 145.7781, tz: "Australia/Brisbane", state: "Queensland",
+    tagline: "Gateway to the Great Barrier Reef and Daintree Rainforest — a tropical town where nature is the main attraction.",
+    cost: { rent: "1 700", coffee: "5.00", transport: "110", meal: "22", salary: "5 500", rentCzk: "29 000", coffeeCzk: "70", transportCzk: "440", mealCzk: "270", salaryCzk: "47 000" },
+    wildlife: { emoji: "🐊", text: "Cairns sits on the edge of croc country — never swim in any waterway you didn't research first, even in town. The sea is off-limits October–May due to box jellyfish. Cassowaries in the rainforest nearby are surprisingly dangerous birds with razor claws." },
+    migration: { score: 55, note: "Cairns is a regional Queensland location — the 491 visa is possible but the tech job market is very small. Most IT work is tourism-related. Best suited to those who want regional visa pathways and an extraordinary natural lifestyle, not a tech career hub." },
+    differences: [
+      { topic: "Language", prague: "Czech (English ok)", city: "English only", verdict: "better", note: "Zero language barrier" },
+      { topic: "Salary (IT)", prague: "CZK 70–120k/mo", city: "AUD 5.5–9k/mo", verdict: "neutral", note: "Lowest in this comparison" },
+      { topic: "Cost of living", prague: "Very affordable", city: "Lowest in this list", verdict: "better", note: "Cheapest of all 10 cities" },
+      { topic: "Nature", prague: "Beautiful", city: "Two world wonders nearby", verdict: "better", note: "Reef + Rainforest" },
+      { topic: "Climate", prague: "4 seasons", city: "Tropical wet/dry", verdict: "neutral", note: "Wet season intense" },
+      { topic: "City size", prague: "1.4M", city: "160k — small town", verdict: "worse", note: "Limited social options" },
+      { topic: "IT market", prague: "Strong", city: "Very limited", verdict: "worse", note: "Tourism IT mainly" },
+    ],
+    tips: [
+      { icon: "🏠", title: "Finding a flat", text: "Cheapest on this list. Realestate.com.au — Whitfield and Edge Hill are the nicest residential areas. Plenty of choice, low competition." },
+      { icon: "💼", title: "IT jobs", text: "Tourism sector IT, some healthcare. Consider remote work for Brisbane or Sydney companies — excellent internet, lower cost of living. Not a standalone tech career city." },
+      { icon: "🚗", title: "Transport", text: "Car is essential. Very little public transport. But you won't need to go far — Cairns is compact. Road trip to the Daintree or Atherton Tablelands on weekends." },
+      { icon: "🌞", title: "Lifestyle surprise", text: "You can snorkel the Great Barrier Reef on a Wednesday after work. The Daintree Rainforest — the world's oldest — is an hour away. If you work remotely, Cairns is one of the world's best kept secrets." },
+    ],
+  },
 };
 
 const PRAGUE = { lat: 50.0755, lon: 14.4378, tz: "Europe/Prague" };
 
+// ── Weather ──────────────────────────────────────────────
 async function getWeather(lat, lon) {
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode,windspeed_10m,relative_humidity_2m,uv_index&timezone=auto`;
   const r = await fetch(url);
-  const d = await r.json();
-  return d.current;
+  return (await r.json()).current;
 }
 
 function weatherEmoji(code) {
@@ -854,8 +522,7 @@ function weatherEmoji(code) {
   if (code <= 67) return '🌧️';
   if (code <= 77) return '❄️';
   if (code <= 82) return '🌦️';
-  if (code <= 99) return '⛈️';
-  return '🌤️';
+  return '⛈️';
 }
 
 function getLocalTime(tz) {
@@ -874,111 +541,44 @@ function timeDiffHours(tz1, tz2) {
   return diff > 0 ? `+${diff}h vs Prague` : `${diff}h vs Prague`;
 }
 
-async function getAIData(city, state) {
-  const prompt = `You are an expert on Australian cities and Czech migration. Return ONLY a JSON object (no markdown, no explanation) with this exact structure for comparing ${city}, ${state}, Australia with Prague, Czech Republic:
-
-{
-  "city_tagline": "one evocative sentence about ${city}'s vibe/personality",
-  "cost": {
-    "au_rent_1br": "avg 1BR apartment rent in ${city} in AUD/month (number only, no currency)",
-    "cz_rent_1br": "avg 1BR apartment rent in Prague in CZK/month (number only)",
-    "au_coffee": "flat white price in ${city} in AUD",
-    "cz_coffee": "espresso price in Prague in CZK",
-    "au_transport": "monthly public transport pass in ${city} in AUD",
-    "cz_transport": "monthly public transport pass in Prague in CZK",
-    "au_meal_mid": "mid-range restaurant meal for 1 in ${city} in AUD",
-    "cz_meal_mid": "mid-range restaurant meal for 1 in Prague in CZK",
-    "au_avg_salary": "average monthly net salary in ${city} in AUD",
-    "cz_avg_salary": "average monthly net salary in Prague in CZK"
-  },
-  "differences": [
-    { "topic": "Language", "prague": "Czech (English widely spoken)", "city": "English", "verdict": "better", "note": "No language barrier" },
-    { "topic": "Healthcare", "prague": "Universal, free for residents", "city": "Medicare + private", "verdict": "neutral", "note": "Medicare covers basics" },
-    { "topic": "Salary", "prague": "Lower but rising", "city": "Significantly higher AUD", "verdict": "better", "note": "AU avg 2-3× higher" },
-    { "topic": "Visa process", "prague": "EU citizen, easy Schengen", "city": "Skilled visa required", "verdict": "worse", "note": "Points-based system" },
-    { "topic": "Cost of living", "prague": "Affordable EU capital", "city": "Higher than Prague", "verdict": "worse", "note": "Especially rent" },
-    { "topic": "Weather", "prague": "4 seasons, cold winters", "city": "${city}-specific climate", "verdict": "better", "note": "More sun year-round" },
-    { "topic": "IT job market", "prague": "Growing, many multinationals", "city": "Strong, good for QA/dev", "verdict": "better", "note": "High demand for tech" }
-  ],
-  "wildlife_warning": "2 sentences about what dangerous animals you might actually encounter in ${city} area, with a touch of dark humour",
-  "wildlife_emoji": "the most relevant danger animal emoji",
-  "tips": [
-    { "icon": "🏠", "title": "Finding a flat", "text": "specific tip for ${city} rental market for new arrivals" },
-    { "icon": "💼", "title": "Job hunting", "text": "specific tip for IT/QA jobs in ${city}" },
-    { "icon": "🚗", "title": "Getting around", "text": "transport tip specific to ${city}" },
-    { "icon": "🌞", "title": "Lifestyle", "text": "one thing that will surprise a Czech person about ${city} lifestyle" }
-  ],
-  "migration_score": 78,
-  "migration_note": "2 sentences about how ${city} ranks for Czech skilled migrants specifically, mentioning visa subclass or pathway if relevant"
-}
-
-Make all data accurate and specific to ${city}. Migration score should be 0-100.`;
-
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1000,
-      messages: [{ role: 'user', content: prompt }]
-    })
-  });
-
-  const data = await response.json();
-  const text = data.content.map(i => i.text || '').join('');
-  const clean = text.replace(/```json|```/g, '').trim();
-  return JSON.parse(clean);
-}
-
+// ── Main compare ─────────────────────────────────────────
 async function compare() {
-  const city = document.getElementById('citySelect').value;
-  if (!city) return;
+  const cityName = document.getElementById('citySelect').value;
+  if (!cityName) return;
 
-  const cityData = CITIES[city];
-  document.getElementById('compareBtn').disabled = true;
   document.getElementById('loading').classList.add('active');
   document.getElementById('results').classList.remove('active');
-  document.getElementById('errorBox').classList.remove('active');
 
   try {
-    const [auWeather, czWeather, ai] = await Promise.all([
-      getWeather(cityData.lat, cityData.lon),
-      getWeather(PRAGUE.lat, PRAGUE.lon),
-      getAIData(city, cityData.state)
+    const city = CITIES[cityName];
+    const [auW, czW] = await Promise.all([
+      getWeather(city.lat, city.lon),
+      getWeather(PRAGUE.lat, PRAGUE.lon)
     ]);
-
-    renderResults(city, cityData, auWeather, czWeather, ai);
-
-  } catch (err) {
-    console.error(err);
-    document.getElementById('errorBox').textContent = 'Something went wrong. Please try again.';
-    document.getElementById('errorBox').classList.add('active');
+    render(cityName, city, auW, czW);
+  } catch(e) {
+    console.error(e);
+    alert('Could not load weather data. Check your connection and try again.');
   } finally {
     document.getElementById('loading').classList.remove('active');
-    document.getElementById('compareBtn').disabled = false;
   }
 }
 
-function renderResults(city, cityData, auW, czW, ai) {
+function render(cityName, city, auW, czW) {
   // Hero
   document.getElementById('cityHero').innerHTML = `
     <div>
-      <div class="city-hero-name">${city}</div>
-      <div class="city-hero-state">${cityData.state} · Australia</div>
-      <div class="city-hero-tagline">${ai.city_tagline}</div>
-    </div>
-  `;
+      <div class="city-hero-name">${cityName}</div>
+      <div class="city-hero-state">${city.state} · Australia</div>
+      <div class="city-hero-tagline">${city.tagline}</div>
+    </div>`;
 
-  // Live row
-  const auTime = getLocalTime(cityData.tz);
-  const czTime = getLocalTime(PRAGUE.tz);
-  const timeDiff = timeDiffHours(cityData.tz, PRAGUE.tz);
-
+  // Live
   document.getElementById('liveRow').innerHTML = `
     <div class="live-card">
       <div class="icon">${weatherEmoji(auW.weathercode)} 🇦🇺</div>
       <div class="value">${Math.round(auW.temperature_2m)}°C</div>
-      <div class="label">${city} now</div>
+      <div class="label">${cityName} now</div>
       <div class="sublabel">Humidity ${auW.relative_humidity_2m}% · UV ${auW.uv_index ?? '—'}</div>
     </div>
     <div class="live-card">
@@ -989,134 +589,125 @@ function renderResults(city, cityData, auW, czW, ai) {
     </div>
     <div class="live-card">
       <div class="icon">🕐</div>
-      <div class="value">${auTime}</div>
-      <div class="label">${city} time</div>
-      <div class="sublabel">${timeDiff}</div>
+      <div class="value">${getLocalTime(city.tz)}</div>
+      <div class="label">${cityName} time</div>
+      <div class="sublabel">${timeDiffHours(city.tz, PRAGUE.tz)}</div>
     </div>
     <div class="live-card">
       <div class="icon">🕐</div>
-      <div class="value">${czTime}</div>
+      <div class="value">${getLocalTime(PRAGUE.tz)}</div>
       <div class="label">Prague time</div>
       <div class="sublabel">${getLocalDate(PRAGUE.tz)}</div>
-    </div>
-  `;
+    </div>`;
 
-  // Cost comparison
-  const c = ai.cost;
+  // Cost
+  const c = city.cost;
   document.getElementById('compareGrid').innerHTML = `
     <div class="compare-card">
-      <div class="compare-card-header au">🇦🇺 ${city}</div>
+      <div class="compare-card-header au">🇦🇺 ${cityName}</div>
       <div class="compare-card-body">
-        <div class="compare-row"><span class="key">1BR rent</span><span class="val">AUD ${c.au_rent_1br}/mo</span></div>
-        <div class="compare-row"><span class="key">Coffee</span><span class="val">AUD ${c.au_coffee}</span></div>
-        <div class="compare-row"><span class="key">Transport pass</span><span class="val">AUD ${c.au_transport}/mo</span></div>
-        <div class="compare-row"><span class="key">Restaurant meal</span><span class="val">AUD ${c.au_meal_mid}</span></div>
-        <div class="compare-row"><span class="key">Avg net salary</span><span class="val">AUD ${c.au_avg_salary}/mo</span></div>
+        <div class="compare-row"><span class="key">1BR rent</span><span class="val">AUD ${c.rent}/mo</span></div>
+        <div class="compare-row"><span class="key">Flat white coffee</span><span class="val">AUD ${c.coffee}</span></div>
+        <div class="compare-row"><span class="key">Monthly transport</span><span class="val">AUD ${c.transport}</span></div>
+        <div class="compare-row"><span class="key">Restaurant meal</span><span class="val">AUD ${c.meal}</span></div>
+        <div class="compare-row"><span class="key">Avg net salary (IT)</span><span class="val">AUD ${c.salary}/mo</span></div>
       </div>
     </div>
     <div class="compare-card">
       <div class="compare-card-header cz">🇨🇿 Prague</div>
       <div class="compare-card-body">
-        <div class="compare-row"><span class="key">1BR rent</span><span class="val">CZK ${c.cz_rent_1br}/mo</span></div>
-        <div class="compare-row"><span class="key">Coffee</span><span class="val">CZK ${c.cz_coffee}</span></div>
-        <div class="compare-row"><span class="key">Transport pass</span><span class="val">CZK ${c.cz_transport}/mo</span></div>
-        <div class="compare-row"><span class="key">Restaurant meal</span><span class="val">CZK ${c.cz_meal_mid}</span></div>
-        <div class="compare-row"><span class="key">Avg net salary</span><span class="val">CZK ${c.cz_avg_salary}/mo</span></div>
+        <div class="compare-row"><span class="key">1BR rent</span><span class="val">CZK ${c.rentCzk}/mo</span></div>
+        <div class="compare-row"><span class="key">Espresso</span><span class="val">CZK ${c.coffeeCzk}</span></div>
+        <div class="compare-row"><span class="key">Monthly transport</span><span class="val">CZK ${c.transportCzk}</span></div>
+        <div class="compare-row"><span class="key">Restaurant meal</span><span class="val">CZK ${c.mealCzk}</span></div>
+        <div class="compare-row"><span class="key">Avg net salary (IT)</span><span class="val">CZK ${c.salaryCzk}/mo</span></div>
       </div>
-    </div>
-  `;
+    </div>`;
 
   // Diff table
-  document.getElementById('cityColHeader').textContent = `${city} 🇦🇺`;
+  document.getElementById('cityColHeader').textContent = `${cityName} 🇦🇺`;
   const diffContainer = document.getElementById('diffRows');
   diffContainer.innerHTML = '';
-  (ai.differences || []).forEach(row => {
+  city.differences.forEach(row => {
     const pill = row.verdict === 'better'
-      ? `<span class="diff-pill better">✓ Better for you</span>`
+      ? `<span class="diff-pill better">✓ Better</span>`
       : row.verdict === 'worse'
       ? `<span class="diff-pill worse">↑ Challenge</span>`
       : `<span class="diff-pill neutral">~ Similar</span>`;
-
     const el = document.createElement('div');
     el.className = 'diff-row';
     el.innerHTML = `
       <span class="topic">${row.topic}<br><span style="font-size:0.75rem;color:#aaa;font-weight:400">${row.note}</span></span>
       <span class="city-val">${row.prague}</span>
       <span class="city-val">${row.city}</span>
-      ${pill}
-    `;
+      ${pill}`;
     diffContainer.appendChild(el);
   });
 
   // Wildlife
   document.getElementById('wildlifeAlert').innerHTML = `
-    <div class="alert-icon">${ai.wildlife_emoji || '🐍'}</div>
+    <div class="alert-icon">${city.wildlife.emoji}</div>
     <div>
-      <div class="alert-title">⚠️ Wildlife heads-up for ${city}</div>
-      <div class="alert-text">${ai.wildlife_warning}</div>
-    </div>
-  `;
+      <div class="alert-title">⚠️ Wildlife heads-up for ${cityName}</div>
+      <div class="alert-text">${city.wildlife.text}</div>
+    </div>`;
 
   // Tips
-  document.getElementById('tipsGrid').innerHTML = (ai.tips || []).map(t => `
+  document.getElementById('tipsGrid').innerHTML = city.tips.map(t => `
     <div class="tip-card">
       <div class="tip-icon">${t.icon}</div>
       <div class="tip-title">${t.title}</div>
       <div class="tip-text">${t.text}</div>
-    </div>
-  `).join('');
+    </div>`).join('');
 
-  // Migration score
-  const score = ai.migration_score || 70;
+  // Migration
+  const score = city.migration.score;
   document.getElementById('migrationScore').textContent = `${score}/100`;
-  document.getElementById('migrationNote').textContent = ai.migration_note;
-  document.getElementById('results').classList.add('active');
+  document.getElementById('migrationNote').textContent = city.migration.note;
 
+  // Calculator - wire up city timezone
+  const opt = document.getElementById('cityTzOption');
+  opt.value = city.tz;
+  opt.textContent = `🇦🇺 ${cityName}`;
+
+  document.getElementById('results').classList.add('active');
   setTimeout(() => {
     document.getElementById('migrationFill').style.width = `${score}%`;
-  }, 300);
+    convertTime();
+    convertCurrencyLeft();
+  }, 100);
 
   document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  // Wire up calculator for this city
-  const cityTzOpt = document.getElementById('cityTzOption');
-  cityTzOpt.value = cityData.tz;
-  cityTzOpt.textContent = '\u{1F1E6}\u{1F1FA} ' + city;
-  convertTime();
 }
 
-// Time converter
+// ── Time converter ────────────────────────────────────────
 function convertTime() {
   const timeInput = document.getElementById('timeInput').value;
   const fromSel = document.getElementById('timezoneFrom').value;
-  if (!timeInput || !fromSel) return;
-
   const cityTz = document.getElementById('cityTzOption').value;
-  if (!cityTz) return;
+  if (!timeInput || !fromSel || !cityTz) return;
 
   const fromTz = fromSel === 'Prague' ? 'Europe/Prague' : cityTz;
   const toTz   = fromSel === 'Prague' ? cityTz : 'Europe/Prague';
-  const toFlag = fromSel === 'Prague' ? '\u{1F1E6}\u{1F1FA}' : '\u{1F1E8}\u{1F1FF}';
+  const toFlag = fromSel === 'Prague' ? '🇦🇺' : '🇨🇿';
   const toName = fromSel === 'Prague'
-    ? document.getElementById('cityTzOption').textContent.replace('\u{1F1E6}\u{1F1FA} ', '')
+    ? document.getElementById('cityTzOption').textContent.replace('🇦🇺 ', '')
     : 'Prague';
 
   const [h, m] = timeInput.split(':').map(Number);
   const now = new Date();
   const fromDateStr = now.toLocaleDateString('en-CA', { timeZone: fromTz });
-  const fakeDate = new Date(fromDateStr + 'T' + String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':00');
-
+  const fakeDate = new Date(`${fromDateStr}T${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:00`);
   const fromOffset = getOffset(fromTz, fakeDate);
   const toOffset   = getOffset(toTz, fakeDate);
-  const diffMs = (toOffset - fromOffset) * 60000;
-  const converted = new Date(fakeDate.getTime() + diffMs);
+  const converted  = new Date(fakeDate.getTime() + (toOffset - fromOffset) * 60000);
 
   const resultTime = converted.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', hour12: true });
   const dayDiff = converted.getDate() - fakeDate.getDate();
-  const dayNote = dayDiff === 1 ? ' (+1 day)' : dayDiff === -1 ? ' (\u22121 day)' : '';
+  const dayNote = dayDiff === 1 ? ' (+1 day)' : dayDiff === -1 ? ' (−1 day)' : '';
 
   document.getElementById('resultTime').textContent = resultTime + dayNote;
-  document.getElementById('resultLabel').textContent = toFlag + ' ' + toName + ' local time';
+  document.getElementById('resultLabel').textContent = `${toFlag} ${toName} local time`;
 }
 
 function getOffset(tz, date) {
@@ -1125,7 +716,7 @@ function getOffset(tz, date) {
   return (new Date(tzStr) - new Date(utcStr)) / 60000;
 }
 
-// Currency converter
+// ── Currency (Frankfurter / ECB) ──────────────────────────
 let audToCzk = null;
 
 async function fetchRate() {
@@ -1133,14 +724,11 @@ async function fetchRate() {
     const r = await fetch('https://api.frankfurter.app/latest?from=AUD&to=CZK');
     const d = await r.json();
     audToCzk = d.rates.CZK;
-    const rateEl = document.getElementById('rateNote');
-    if (rateEl) {
-      rateEl.innerHTML = 'Live rate: <span>1 AUD = ' + audToCzk.toFixed(2) + ' CZK</span> \u00b7 source: Frankfurter / ECB';
-    }
+    document.getElementById('rateNote').innerHTML =
+      `Live rate: <span>1 AUD = ${audToCzk.toFixed(2)} CZK</span> · source: Frankfurter / ECB`;
     convertCurrencyLeft();
   } catch(e) {
-    const rateEl = document.getElementById('rateNote');
-    if (rateEl) rateEl.textContent = 'Could not load live rate.';
+    document.getElementById('rateNote').textContent = 'Could not load live rate.';
   }
 }
 
