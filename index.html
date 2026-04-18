@@ -602,9 +602,7 @@ function render(cityName, city, auW, czW) {
       <div class="sublabel">${getLocalDate(PRAGUE.tz)}</div>
     </div>`;
 
-  // Cost - stored for later re-render when rate loads
-  window._lastCity = city;
-  window._lastCityName = cityName;
+  // Cost
   renderCost(city, cityName);
 
   // Diff table
@@ -664,19 +662,28 @@ function render(cityName, city, auW, czW) {
 }
 
 // ── Cost renderer (called on compare + when rate loads) ───
+// Store last rendered city globally so fetchRate can re-render
+let _lastCity = null, _lastCityName = null;
+
 function renderCost(city, cityName) {
+  _lastCity = city;
+  _lastCityName = cityName;
   const c = city.cost;
   const rate = audToCzk;
 
+  // Strip spaces/commas before parsing: "2 200" -> 2200
+  function toNum(val) {
+    return parseFloat(String(val).replace(/[^0-9.]/g, ''));
+  }
   function aud(val, suffix) {
-    const num = parseFloat(String(val).replace(/[^0-9.]/g, ''));
-    const czk = rate ? ` <span class="dual-czk">≈ CZK ${Math.round(num * rate).toLocaleString()}</span>` : '';
-    return `AUD ${val}${suffix || ''}${czk}`;
+    const num = toNum(val);
+    const czk = rate ? `<span class="dual-czk">≈ CZK ${Math.round(num * rate).toLocaleString('cs-CZ')}</span>` : '';
+    return `AUD ${val}${suffix || ''} ${czk}`;
   }
   function czk(val, suffix) {
-    const num = parseFloat(String(val).replace(/[^0-9.]/g, ''));
-    const a = rate ? ` <span class="dual-aud">≈ AUD ${(num / rate).toFixed(0)}</span>` : '';
-    return `CZK ${val}${suffix || ''}${a}`;
+    const num = toNum(val);
+    const a = rate ? `<span class="dual-aud">≈ AUD ${Math.round(num / rate).toLocaleString('en-AU')}</span>` : '';
+    return `CZK ${val}${suffix || ''} ${a}`;
   }
 
   document.getElementById('compareGrid').innerHTML = `
@@ -750,7 +757,7 @@ async function fetchRate() {
       `Live rate: <span>1 AUD = ${audToCzk.toFixed(2)} CZK</span> · source: Frankfurter / ECB`;
     convertCurrencyLeft();
     // Re-render cost cards with live rate if a city is already shown
-    if (window._lastCity) renderCost(window._lastCity, window._lastCityName);
+    if (_lastCity) renderCost(_lastCity, _lastCityName);
   } catch(e) {
     document.getElementById('rateNote').textContent = 'Could not load live rate.';
   }
