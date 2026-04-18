@@ -87,7 +87,9 @@ main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
 .compare-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.5rem 0; border-bottom: 1px solid var(--bg2); font-size: 0.88rem; }
 .compare-row:last-child { border-bottom: none; }
 .compare-row .key { color: var(--muted); }
-.compare-row .val { font-weight: 700; }
+.compare-row .val { font-weight: 700; text-align: right; }
+.dual-czk { display: block; font-size: 0.72rem; font-weight: 400; color: var(--muted); margin-top: 0.1rem; }
+.dual-aud { display: block; font-size: 0.72rem; font-weight: 400; color: var(--muted); margin-top: 0.1rem; }
 
 .diff-table { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 1.5rem; }
 .diff-table-header { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; padding: 0.6rem 1rem; background: var(--bg2); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); gap: 0.5rem; }
@@ -600,29 +602,10 @@ function render(cityName, city, auW, czW) {
       <div class="sublabel">${getLocalDate(PRAGUE.tz)}</div>
     </div>`;
 
-  // Cost
-  const c = city.cost;
-  document.getElementById('compareGrid').innerHTML = `
-    <div class="compare-card">
-      <div class="compare-card-header au">🇦🇺 ${cityName}</div>
-      <div class="compare-card-body">
-        <div class="compare-row"><span class="key">1BR rent</span><span class="val">AUD ${c.rent}/mo</span></div>
-        <div class="compare-row"><span class="key">Flat white coffee</span><span class="val">AUD ${c.coffee}</span></div>
-        <div class="compare-row"><span class="key">Monthly transport</span><span class="val">AUD ${c.transport}</span></div>
-        <div class="compare-row"><span class="key">Restaurant meal</span><span class="val">AUD ${c.meal}</span></div>
-        <div class="compare-row"><span class="key">Avg net salary (IT)</span><span class="val">AUD ${c.salary}/mo</span></div>
-      </div>
-    </div>
-    <div class="compare-card">
-      <div class="compare-card-header cz">🇨🇿 Prague</div>
-      <div class="compare-card-body">
-        <div class="compare-row"><span class="key">1BR rent</span><span class="val">CZK ${c.rentCzk}/mo</span></div>
-        <div class="compare-row"><span class="key">Espresso</span><span class="val">CZK ${c.coffeeCzk}</span></div>
-        <div class="compare-row"><span class="key">Monthly transport</span><span class="val">CZK ${c.transportCzk}</span></div>
-        <div class="compare-row"><span class="key">Restaurant meal</span><span class="val">CZK ${c.mealCzk}</span></div>
-        <div class="compare-row"><span class="key">Avg net salary (IT)</span><span class="val">CZK ${c.salaryCzk}/mo</span></div>
-      </div>
-    </div>`;
+  // Cost - stored for later re-render when rate loads
+  window._lastCity = city;
+  window._lastCityName = cityName;
+  renderCost(city, cityName);
 
   // Diff table
   document.getElementById('cityColHeader').textContent = `${cityName} 🇦🇺`;
@@ -680,6 +663,45 @@ function render(cityName, city, auW, czW) {
   document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+// ── Cost renderer (called on compare + when rate loads) ───
+function renderCost(city, cityName) {
+  const c = city.cost;
+  const rate = audToCzk;
+
+  function aud(val, suffix) {
+    const num = parseFloat(String(val).replace(/[^0-9.]/g, ''));
+    const czk = rate ? ` <span class="dual-czk">≈ CZK ${Math.round(num * rate).toLocaleString()}</span>` : '';
+    return `AUD ${val}${suffix || ''}${czk}`;
+  }
+  function czk(val, suffix) {
+    const num = parseFloat(String(val).replace(/[^0-9.]/g, ''));
+    const a = rate ? ` <span class="dual-aud">≈ AUD ${(num / rate).toFixed(0)}</span>` : '';
+    return `CZK ${val}${suffix || ''}${a}`;
+  }
+
+  document.getElementById('compareGrid').innerHTML = `
+    <div class="compare-card">
+      <div class="compare-card-header au">🇦🇺 ${cityName}</div>
+      <div class="compare-card-body">
+        <div class="compare-row"><span class="key">1BR rent</span><span class="val">${aud(c.rent, '/mo')}</span></div>
+        <div class="compare-row"><span class="key">Flat white coffee</span><span class="val">${aud(c.coffee, '')}</span></div>
+        <div class="compare-row"><span class="key">Monthly transport</span><span class="val">${aud(c.transport, '')}</span></div>
+        <div class="compare-row"><span class="key">Restaurant meal</span><span class="val">${aud(c.meal, '')}</span></div>
+        <div class="compare-row"><span class="key">Avg net salary (IT)</span><span class="val">${aud(c.salary, '/mo')}</span></div>
+      </div>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-header cz">🇨🇿 Prague</div>
+      <div class="compare-card-body">
+        <div class="compare-row"><span class="key">1BR rent</span><span class="val">${czk(c.rentCzk, '/mo')}</span></div>
+        <div class="compare-row"><span class="key">Espresso</span><span class="val">${czk(c.coffeeCzk, '')}</span></div>
+        <div class="compare-row"><span class="key">Monthly transport</span><span class="val">${czk(c.transportCzk, '')}</span></div>
+        <div class="compare-row"><span class="key">Restaurant meal</span><span class="val">${czk(c.mealCzk, '')}</span></div>
+        <div class="compare-row"><span class="key">Avg net salary (IT)</span><span class="val">${czk(c.salaryCzk, '/mo')}</span></div>
+      </div>
+    </div>`;
+}
+
 // ── Time converter ────────────────────────────────────────
 function convertTime() {
   const timeInput = document.getElementById('timeInput').value;
@@ -727,6 +749,8 @@ async function fetchRate() {
     document.getElementById('rateNote').innerHTML =
       `Live rate: <span>1 AUD = ${audToCzk.toFixed(2)} CZK</span> · source: Frankfurter / ECB`;
     convertCurrencyLeft();
+    // Re-render cost cards with live rate if a city is already shown
+    if (window._lastCity) renderCost(window._lastCity, window._lastCityName);
   } catch(e) {
     document.getElementById('rateNote').textContent = 'Could not load live rate.';
   }
